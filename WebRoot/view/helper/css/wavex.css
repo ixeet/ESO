@@ -1,0 +1,200 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*------------------------------------------------------------------
+[Master Stylesheet]
+
+Project:	WaveX
+Version:	1.0
+Last change:	04/07/14 
+Primary use:	MultiPurpose 
+-------------------------------------------------------------------*/
+
+@import url("google-fonts.css");
+
+/* google font opensans */
+
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,900,800,700,600,500,300,200,100);
+
+/*------------------------------------------------------------------
+[Table of contents]
+
+1. Body
+2. Header / .header
+3. Navigation / .navbar
+4. about / .about 
+5. about / .portfolio
+6. pricing / .pricing
+7. sponsors / .sponsors
+8. contact / .contact
+9. Footer / .footer
+-------------------------------------------------------------------*/
+ 
+::-moz-selection {
+	color:#fff;
+}
+ 
+ }
+
+}
+a{
+	text-decoration:none;
+}
+ 
+/*..... CONTACT ......*/
+
+.contact{
+	margin:90px 0 0 0;
+	text-align: -webkit-center;
+	text-align: -moz-center;
+	text-align: -ms-center;
+	text-align: -o-center;
+}
+.contact .title{
+	margin:54px 0 0 0;
+}
+.contact .title h1{
+	color:#fff !important;
+}
+.contact .form{
+	width:612px;
+	margin:84px auto 0 auto;
+	padding:48px 30px;
+	text-align:center;
+}
+.contact .form3{
+	margin-top:94px;
+}
+.contact .form input[type=text]{
+	border:none;
+	background:#edebec;
+	width:100%;
+	height:42px;
+	margin:0 0 20px 0;
+	padding:0px 10px;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	color:#000000;
+	font-size:16px;
+	font-weight:normal;
+}
+.contact .form textarea{
+	border:none;
+	background:#edebec;
+	width:100%;
+	height:170px;
+	padding:10px 10px;
+	
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	color:#000000;
+	font-size:16px;
+	font-weight:normal;
+}
+.contact .form input[type=submit]{
+	border:none;
+	background:#9fbc2b;
+	padding:9px 30px;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	color:#fff;
+	float: left;
+margin: -34px 0 0 10px;
+z-index: 2;
+position: relative;
+	font-size:18px;
+	text-transform:uppercase;
+	font-weight:normal;
+}
+.contact .social{
+	margin:60px 0 0 0;
+	text-align:center;
+	
+}
+.contact .social h5{
+	font-size:24px;
+	font-weight:normal;
+	color:#444444;
+	margin: 0 0 26px 0;
+}
+
+.contact .social a{
+	
+	padding: 15px 35px 15px 12px;
+	margin:5px 0 0 10px;
+	
+}
+ .contact .social a:hover{
+	-moz-transform: rotate(360deg);
+-moz-transition: all 0.8s ease-in-out 0s;
+-webkit-transform: rotate(360deg);
+-webkit-transition: all 0.8s ease-in-out 0s;
+-ms-transform: rotate(360deg);
+-ms-transition: all 0.8s ease-in-out 0s;
+transform: rotate(360deg);
+transition: all 0.8s ease-in-out 0s;
+
+}
+.contact .social a.fb{
+	background-image:url(../images/fb.png);
+}
+
+
+.contact .social a.gp{
+	background-image:url(../images/gp.png);
+}
+.contact .social a.ig:hover{
+	background:#4f7ea7;
+}
+.contact .social a.yt{
+	background-image:url(../images/yt.png);
+}
+
+
+.contact .social a.li{
+	background-image:url(../images/ld.png);
+}
+.contact .copyright{
+	text-align:center;
+}
+.contact .copyright span{
+	font-size:14px;
+	color:#828282;
+	font-weight:normal;
+	margin:52px 0 10px 0;
+	display:block;
+}
+ 
+a:selection{
+	outline:none;
+	border:0px;
+}
+#fifth{ position:relative;}
+
+/* animation */
+
+.animated{ opacity:1 !important;}
+.about-player, .flipInY, .animate{ opacity:0;}
+@media screen and (-webkit-min-device-pixel-ratio:0)
+{ 
+::i-block-chrome, #second {
+	background: url(../images/secondbg.jpg) no-repeat !important;
+	background-attachment:scroll !important;
+	background-position:0 0 !important;
+}
+::i-block-chrome, #third {
+	background: url(../images/third.jpg) no-repeat !important;
+	background-attachment:scroll !important;
+	background-position:0 0 !important;
+}
+::i-block-chrome, #fifth {
+	background: url(../images/contact.jpg) 50% 0 no-repeat !important;
+	background-attachment:scroll !important;
+	background-position:0 0 !important;
+}
+}
+
+

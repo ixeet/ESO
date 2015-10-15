@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.multipart.maxSize" value="1000000000" />
+	<package name="default" namespace="/" extends="struts-default">
+
+		<result-types>
+			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+
+		<action name="welcome" class="com.scolere.eso.application.web.action.UserControllerAction">
+			<result name="SUCCESS" type="tiles">/login</result>
+		</action>
+		
+		<action name="AboutUs" class="com.scolere.eso.application.web.action.CommonAction" method="aboutUsDetail">
+			<result name="success" type="tiles">/aboutUs</result>
+		</action>
+		
+		<action name="breakingNews" class="com.scolere.eso.application.web.action.CommonAction" method="breakingNewsDetails">
+			<result name="success" type="tiles">/breakingNews</result>
+		</action>
+		
+		<action name="contactUs" class="com.scolere.eso.application.web.action.CommonAction" method="contactUsDetail">
+			<result name="success" type="tiles">/contactUs</result>
+		</action>
+		
+		<action name="userLogin" class="com.scolere.eso.application.web.action.UserControllerAction" method="executeLogin">
+			<result name="success" type="tiles">/login</result>
+		</action>
+		
+		<action name="logout" class="com.scolere.eso.application.web.action.UserControllerAction" method="logout">
+			<result name="success" type="tiles">/login</result>
+		</action>
+				
+		<action name="crmLogin" class="com.scolere.eso.application.web.action.UserControllerAction" method="crmLogin">
+			<result name="success" type="tiles">/account</result>
+			<result name="failure" type="tiles">/login</result>
+		</action>
+		
+		<action name="updateProf" class="com.scolere.eso.application.web.action.UserControllerAction" method="profileUpdate">
+			<result name="success" type="tiles">/myProf</result>
+		</action>
+		
+		<action name="forgetPass" class="com.scolere.eso.application.web.action.UserControllerAction" method="forgotPassword">
+			<result name="success" type="tiles">/resetPwd</result>
+		</action>
+		
+		<action name="newsLetterSave" class="com.scolere.eso.application.web.action.NewsLetterSignUpAction">  
+			<result name="SUCCESS" type="tiles">/login</result>  
+		</action> 
+
+		<action name="contact-us" class="com.scolere.eso.application.web.action.ContactUsAction">  
+			<result name="success" type="tiles">/login</result>  
+		</action> 
+
+	</package>
+</struts>    
