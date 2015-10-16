@@ -93,17 +93,23 @@
 							 
 								<div class="col-md-6 col-sm-6 mg_top20">
 									<span style="color:#256ea6">Welcome  <s:property value="emailId"/>, You are Logged in.</span>
+									<form action="logout" >
+										<div class="form-group" >									
+											  <button type="submit" value="logout" class="btn bg_button textcolor_w">LOGOUT</button>    
+										</div>	
+									</form>
+									<form action="myprofileCheck" >
+										<div class="form-group" >									
+											  <button type="submit" value="myProfile" class="btn bg_button textcolor_w">MY PROFILE</button>    
+										</div>	
+									</form>		
 									<form  method="POST" action="">
 										<div class="input-group col-md-12 mg_top20">
 											<input type="text" class="form-control search-query" placeholder="Search Here">
 												<span class=" glyphicon glyphicon-search search-icon lft head-color"></span>
 										</div>
 									</form >
-									<form action="logout" >
-										<div class="form-group" >									
-											  <button type="submit" value="logout" class="btn bg_button textcolor_w">LOGOUT</button>    
-										</div>	
-									</form>									
+								
 								</div>
 							
 							</s:elseif>

@@ -4,7 +4,7 @@
 <body>
 <!------------Body Section  for account form begins------------>
 <div class="container marge_bot5">
-	<form action="updateProf" method="post">
+	<form action="updateProf" method="post" enctype="multipart/form-data">
 
 	<div class="col-sm-6">
 		<h4 class="head-color">Account Details</h4>
@@ -21,7 +21,7 @@
 						</div>
 						<label class="head-color">Member Information</label>
 						<div class="form-group"> 
-							<input type="email" class="form-control" name="emailId" placeholder="<s:property value="emailId"/>" value="<s:property value="emailId"/> " >
+							<input type="email" class="form-control" name="emailId" placeholder=" " value="<s:property value="emailId"/> " >
 						</div>
 						<div class="form-group">
 							<input type="text" class="form-control " name="fname" placeholder="First Name" required>
@@ -59,7 +59,7 @@
                                   <a href="#" class="textcolor_gy fw_b crt_acc">Terms of Use: </a>
                                   <input type="checkbox" value="interest" name="interest">  I Accept<br>
                              </div> 
-						</div>
+					
 						<h4 class="textcolor_gy">Your account information will be emailed to this address.</h4>
 					
 		</div>	
@@ -124,6 +124,9 @@
 						<h5 class="textcolor_gy lh_25 mg_rm35"> Select an image file on your computer. </h5>
 						<h5 class="textcolor_gy lh_25 mg_rm35"> You can upload a JPG, GIF or PNG file (File size limit is 4MG). </h5>
 					</div>
+<%-- 						<s:form  method="post" enctype="multipart/form-data">
+    					<s:file name="userImage" label="User Image" />
+    					</s:form> --%>
 					<div class="form-group col-sm-10 mp_0 mg_lm20 webmg_lm20">
 						<input type="file" class="form-control" name="userImage" placeholder="Upload Photo">
 					</div>

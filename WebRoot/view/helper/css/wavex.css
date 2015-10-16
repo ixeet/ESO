@@ -30,9 +30,7 @@ Primary use:	MultiPurpose
 9. Footer / .footer
 -------------------------------------------------------------------*/
  
-::-moz-selection {
-	color:#fff;
-}
+
  
  }
 
@@ -121,45 +119,15 @@ position: relative;
 	margin: 0 0 26px 0;
 }
 
-.contact .social a{
-	
-	padding: 15px 35px 15px 12px;
-	margin:5px 0 0 10px;
-	
-}
- .contact .social a:hover{
-	-moz-transform: rotate(360deg);
--moz-transition: all 0.8s ease-in-out 0s;
--webkit-transform: rotate(360deg);
--webkit-transition: all 0.8s ease-in-out 0s;
--ms-transform: rotate(360deg);
--ms-transition: all 0.8s ease-in-out 0s;
-transform: rotate(360deg);
-transition: all 0.8s ease-in-out 0s;
-
-}
-.contact .social a.fb{
-	background-image:url(../images/fb.png);
-}
-
-
-.contact .social a.gp{
-	background-image:url(../images/gp.png);
-}
-.contact .social a.ig:hover{
-	background:#4f7ea7;
-}
-.contact .social a.yt{
-	background-image:url(../images/yt.png);
-}
-
-
-.contact .social a.li{
-	background-image:url(../images/ld.png);
-}
-.contact .copyright{
-	text-align:center;
-}
+.contact .social a{padding:15px}
+.contact .social a i{font-size:18px;}
+.contact .social a{ background-color:#467192; color:#ffffff}
+.contact .social a.fb:hover{ background-color:#3c599b;}
+.contact .social a.gp:hover{ background-color:#dd4b39}
+.contact .social a.ig:hover{background:#4f7ea7;}
+.contact .social a.yt:hover{ background-color:#c22c2e}
+.contact .social a.li:hover{ background-color:#007bb6}
+.contact .copyright{text-align:center;}
 .contact .copyright span{
 	font-size:14px;
 	color:#828282;

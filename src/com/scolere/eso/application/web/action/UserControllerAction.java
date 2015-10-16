@@ -144,11 +144,12 @@ public class UserControllerAction extends ActionSupport implements ModelDriven<E
 	//User CAN update the profile
 	public String profileUpdate(){
 		
-		if(request.getSession().getAttribute("firstlogin") == null)
+		if(request.getSession().getAttribute("userVO") == null)
 
 		try{
 			
-            String filePath = request.getSession().getServletContext().getRealPath("C:/ESO/userProfilePics/images/");
+            String filePath = "C:/ESO/useProfilePics/";
+           // String filePath = request.getSession().getServletContext().getRealPath("/ESO/userProfilePics/");
             System.out.println("Server path:" + filePath);
             File fileToCreate = new File(filePath, form.getUserImageFileName());
             System.out.println("File Path : "+filePath+form.getUserImageFileName());
@@ -159,7 +160,7 @@ public class UserControllerAction extends ActionSupport implements ModelDriven<E
 			 eSOUserServiceIface.updateESOUserProfile(form);
 			 
 			 HttpServletRequest request= ServletActionContext.getRequest();
-			 request.getSession().setAttribute("firstlogin", form);
+			 request.getSession().setAttribute("userVO", form);
 			 
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -168,6 +169,33 @@ public class UserControllerAction extends ActionSupport implements ModelDriven<E
 		return SUCCESS;
 	}
 	
+	public String myProfileUpdate(){
+		
+		if(request.getSession().getAttribute("userVO") == null)
+
+		try{
+			
+            String filePath = "C:/ESO/useProfilePics/";
+           // String filePath = request.getSession().getServletContext().getRealPath("/ESO/userProfilePics/");
+            System.out.println("Server path:" + filePath);
+            File fileToCreate = new File(filePath, form.getUserImageFileName());
+            System.out.println("File Path : "+filePath+form.getUserImageFileName());
+            
+            FileUtils.copyFile(form.getUserImage(), fileToCreate);//copy file to the folder filepath ;
+            
+            
+			 //eSOUserServiceIface.updateESOUserProfile(form);
+			 
+			 HttpServletRequest request= ServletActionContext.getRequest();
+			 request.getSession().setAttribute("userVO", form);
+			 
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("In profileUpdate method Exeception...." +e);
+		}
+		return SUCCESS;
+		
+	}
 	//admin can save the new user data
 	public String addNewUser(){
 		try{

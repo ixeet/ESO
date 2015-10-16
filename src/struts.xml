@@ -38,6 +38,10 @@
 		</action>
 		
 		<action name="updateProf" class="com.scolere.eso.application.web.action.UserControllerAction" method="profileUpdate">
+			<result name="success" type="tiles">/login</result>
+		</action>
+		
+		<action name="myprofileCheck" class="com.scolere.eso.application.web.action.UserControllerAction" method="myProfileUpdate">
 			<result name="success" type="tiles">/myProf</result>
 		</action>
 		
