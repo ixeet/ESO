@@ -146,14 +146,14 @@ public class UserControllerAction extends ActionSupport implements ModelDriven<E
 		return SUCCESS;
 	}
 	
-	//User CAN update the profile
+	//User can update the profile for first time login
 	public String profileUpdate(){
 		
 		if(request.getSession().getAttribute("userVO") == null)
 
 		try{
 			
-            String filePath = "C:/ESO/useProfilePics/";
+            String filePath = "C:/ESO/useProfilePics/";			//profile pic saved in the folder.
            // String filePath = request.getSession().getServletContext().getRealPath("/ESO/userProfilePics/");
             System.out.println("Server path:" + filePath);
             File fileToCreate = new File(filePath, form.getUserImageFileName());
@@ -177,9 +177,8 @@ public class UserControllerAction extends ActionSupport implements ModelDriven<E
 			 }
 			 
 			 //To add user other interests
-			 if(form.getOtherInterestName() != null){
-				 
-			 eSOUserServiceIface.addESOUserOtherInterest(form);
+			 if(form.getOtherInterestName() != null){				 
+				 	eSOUserServiceIface.addESOUserOtherInterest(form);
 			 }
 			 
 			 HttpServletRequest request= ServletActionContext.getRequest();
@@ -192,25 +191,24 @@ public class UserControllerAction extends ActionSupport implements ModelDriven<E
 		return SUCCESS;
 	}
 	
-	public String myProfileUpdate(){
+	
+	//for updating the profile picture
+	public String myProfilePhotoUpdate(){
 		
-		if(request.getSession().getAttribute("userVO") == null)
+		if(request.getSession().getAttribute("profPic") == null)
 
-		try{
-			
-            String filePath = "C:/ESO/useProfilePics/";
-           // String filePath = request.getSession().getServletContext().getRealPath("/ESO/userProfilePics/");
+		try{			
+            String filePath = "C:/ESO/useProfilePics/";   	//profile pic saved in the folder
             System.out.println("Server path:" + filePath);
             File fileToCreate = new File(filePath, form.getUserImageFileName());
             System.out.println("File Path : "+filePath+form.getUserImageFileName());
             
             FileUtils.copyFile(form.getUserImage(), fileToCreate);//copy file to the folder filepath ;
-            
-            
-			 //eSOUserServiceIface.updateESOUserProfile(form);
+                      
+			 eSOUserServiceIface.updateESOUserProfilePic(form);
 			 
 			 HttpServletRequest request= ServletActionContext.getRequest();
-			 request.getSession().setAttribute("userVO", form);
+			 request.getSession().setAttribute("profPic", form);
 			 
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -219,6 +217,22 @@ public class UserControllerAction extends ActionSupport implements ModelDriven<E
 		return SUCCESS;
 		
 	}
+	
+	//reset the password in profile pic page.
+	public String resetPassword(){
+		try{
+			eSOUserServiceIface.restPassword(form);
+			 
+			 HttpServletRequest request= ServletActionContext.getRequest();
+			 request.getSession().setAttribute("resetPass", form);
+			
+		}catch(Exception ex){
+			
+		}
+		return SUCCESS;
+	}
+	
+	
 	//admin can save the new user data
 	public String addNewUser(){
 		try{

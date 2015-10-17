@@ -17,9 +17,13 @@ public interface ESOUserDao {
 
 	public HashMap<String, String> profileUpdate(EsoUserForm form);
 	
+	public HashMap<String, String> profilePicUpdate(EsoUserForm form);
+	
 	public HashMap<String, String> saveUserInterest(int userId,int interestId);
 	
 	public HashMap<String, String> saveUserOtherInterest(EsoUserForm form);
+	
+	public HashMap<String, String> resetPassword(EsoUserForm form);
 	
 	//public ESOUserVO getUserDetail(EsoUserForm form);
 

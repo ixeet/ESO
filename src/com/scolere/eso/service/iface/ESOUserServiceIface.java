@@ -21,10 +21,19 @@ public interface ESOUserServiceIface {
 	public boolean updateESOUserProfile(EsoUserForm form) throws IOException,
 			ServerException, ParseException;
 	
+	public boolean updateESOUserProfilePic(EsoUserForm form) throws IOException,
+	ServerException, ParseException;
+	
 	public boolean updateESOUserInterest(int userId,int interestId) throws IOException,
 	ServerException, ParseException;
 
 	public boolean addESOUserOtherInterest(EsoUserForm form) throws IOException,
+	ServerException, ParseException;
+	
+	public boolean restPassword(EsoUserForm form) throws IOException,
+	ServerException, ParseException;
+	
+	public boolean addAlternativeUser(EsoUserForm form) throws IOException,
 	ServerException, ParseException;
 	
 	boolean updateUserLoginFlag(ESOUserVO vo) throws IOException,

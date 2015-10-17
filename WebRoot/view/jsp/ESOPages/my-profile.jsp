@@ -103,6 +103,24 @@
     <div class="form-group col-sm-4">
       <button type="submit" class="btn bg_button textcolor_w">SAVE CHANGES</button>
     </div>
+    
+    <div class="col-sm-4">
+      <h4 class="head-color"> Add Alternative Account</h4>
+      <form>
+        <div class="form-group">
+          <input type="text" class="form-control"   placeholder=" Add User Name" required>
+        </div>
+        <div class="form-group">
+          <input type="email" class="form-control"   placeholder=" Add User email Id" required>
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control"  placeholder=" Password for the User " required>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn bg_button textcolor_w">UPDATE PASSWORD</button>
+        </div>
+      </form>
+    </div>
     <h4 class="col-sm-12 head-color ">Your Community Dialog</h4>
     <div class="col-sm-12">
       <div class="border"></div>

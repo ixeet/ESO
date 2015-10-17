@@ -84,7 +84,6 @@ public class ESOUserServiceImpl extends ESODaoAbstract implements ESOUserService
 		String uri = rc.getURI(Config.LOGINEMAILID,Config.DATABASENAME,"ESO_USERS");
         rc.updateData(uri,eSOUserDaoImpl.profileUpdate(form),getCriteria(form),null);
         
-       // System.out.println("Data matching the criteria " + getCriteria(EsoUserForm form) + " successfully updated.");
         System.out.println("Successfully added the row to " + uri);
         //System.out.println(" The response is " + result);	
 		return true;
@@ -122,9 +121,20 @@ public class ESOUserServiceImpl extends ESODaoAbstract implements ESOUserService
         rc.updateData(uri,eSOUserDaoImpl.loginFlagUpdate(vo),getCriteria(vo),null);
         
         System.out.println("Successfully added the row to " + uri);
-
         
         return true;
+	}
+	
+	@Override
+	public boolean updateESOUserProfilePic(EsoUserForm form)
+			throws IOException, ServerException, ParseException {
+		
+		String uri = rc.getURI(Config.LOGINEMAILID,Config.DATABASENAME,"ESO_USERS");
+        rc.updateData(uri,eSOUserDaoImpl.profilePicUpdate(form),getCriteria(form),null);
+        
+        System.out.println("Successfully added the row to " + uri);
+        //System.out.println(" The response is " + result);	
+		return true;
 	}
 	
     public String getCriteria(ESOUserVO vo)
@@ -137,14 +147,28 @@ public class ESOUserServiceImpl extends ESODaoAbstract implements ESOUserService
         return "(\"Email\" = '"+form.getEmailId()+"')";
     }
 
+	@Override
+	public boolean restPassword(EsoUserForm form) throws IOException,
+			ServerException, ParseException {
+		
+		String uri = rc.getURI(Config.LOGINEMAILID,Config.DATABASENAME,"ESO_USERS");
+        rc.updateData(uri,eSOUserDaoImpl.resetPassword(form),getCriteria(form),null);
+        
+        System.out.println("Successfully added the row to " + uri);
+        //System.out.println(" The response is " + result);	
+		return true;
+	}
 
-
-
-
-
-
-
-
-
+	@Override
+	public boolean addAlternativeUser(EsoUserForm form) throws IOException,
+			ServerException, ParseException {
+		String uri = rc.getURI(Config.LOGINEMAILID,Config.DATABASENAME,"ESO_USERS");
+        Map result = rc.addRow(uri,eSOUserDaoImpl.saveESOUservO(form),null);
+        
+       // System.out.println("Data matching the criteria " + getCriteria(EsoUserForm form) + " successfully updated.");
+        System.out.println("Successfully added the row to " + uri);
+        //System.out.println(" The response is " + result);	
+		return true;
+	}
 
 }

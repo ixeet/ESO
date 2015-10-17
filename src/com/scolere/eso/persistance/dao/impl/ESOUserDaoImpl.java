@@ -219,6 +219,38 @@ public class ESOUserDaoImpl extends ESODaoZohoAbstract implements ESOUserDao{
 	}
 
 
+	@Override
+	public HashMap<String, String> profilePicUpdate(EsoUserForm form) {
+		
+	    SimpleDateFormat dtFmt = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+
+		HashMap rowValsMap = new HashMap();
+        rowValsMap.put("PROFILE_PIC", form.getUserImageFileName());
+        rowValsMap.put("LAST_UPDT_TM",dtFmt.format(new Date()));
+        
+        System.out.println("The Saved Profile pic are : "+rowValsMap);
+
+		return rowValsMap;
+	}
+
+
+	@Override
+	public HashMap<String, String> resetPassword(EsoUserForm form) {
+		
+	    SimpleDateFormat dtFmt = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		
+		HashMap rowValsMap = new HashMap();
+
+        rowValsMap.put("Password", form.getUserPassword());
+        rowValsMap.put("CONFIRM_PASSWORD", form.getConfirmPassword());
+        rowValsMap.put("LAST_UPDT_TM",dtFmt.format(new Date()));
+        
+        System.out.println("The Saved passwords are : "+rowValsMap);
+
+		return rowValsMap;
+	}
+
+
 
 
 
