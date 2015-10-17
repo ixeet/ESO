@@ -2,11 +2,14 @@ package com.scolere.eso.persistance.dao.impl;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import com.scolere.eso.application.web.form.EsoUserForm;
 import com.scolere.eso.domain.vo.ESOUserVO;
+import com.scolere.eso.domain.to.InterestTO;
 import com.scolere.eso.persistance.dao.iface.ESOUserDao;
 import com.scolere.eso.persistance.factory.ESODaoZohoAbstract;
 
@@ -14,7 +17,6 @@ import com.scolere.eso.persistance.factory.ESODaoZohoAbstract;
 public class ESOUserDaoImpl extends ESODaoZohoAbstract implements ESOUserDao{
 
 	Connection conn = null;
-	//PreparedStatement stmt = null;
     Statement stmt = null;
 	ResultSet rs = null;
 	ESOUserVO eSOUserVO = new ESOUserVO();
@@ -62,11 +64,12 @@ public class ESOUserDaoImpl extends ESODaoZohoAbstract implements ESOUserDao{
 
         if(rs.next()){
         	eSOUserVO = new ESOUserVO();
+        	eSOUserVO.setUserId(rs.getInt("USER_ID"));
         	eSOUserVO.setUserName(rs.getString("USER_NM"));
         	eSOUserVO.setEmailId(rs.getString("EMAIL"));
         	eSOUserVO.setUserPassword(rs.getString("PASSWORD"));
         	eSOUserVO.setLoginFlag(rs.getInt("LOGIN_FLAG"));
-        	System.out.println("CRM user exist");
+        	System.out.println("CRM user exist = "+eSOUserVO);
         	}
 		} catch (Exception e) {
 			System.out.println("getCRMUser encounter exception"+e);
@@ -74,6 +77,37 @@ public class ESOUserDaoImpl extends ESODaoZohoAbstract implements ESOUserDao{
 		}
 		
 		return eSOUserVO;
+	}
+	
+
+	@Override
+	public List<InterestTO> getUserInterest() {
+		List<InterestTO> interestTOList = null;
+		InterestTO interestTO2 = null;
+		try{
+			conn = getCRMConnection();
+			String sql ="SELECT * FROM USER_INTERESTS";
+			System.out.println("Query  --> "+sql);
+	          stmt = conn.createStatement();
+	          rs = stmt.executeQuery(sql);
+	          System.out.println("resultSet "+rs);
+	          interestTOList = new ArrayList<InterestTO>();
+	          while(rs.next()){
+	        	interestTO2 = new InterestTO(rs.getInt("INTEREST_ID"),rs.getString("INTEREST_NM"));
+/*	        	interestTO2 = new InterestTO();
+	        	interestTO2.setInterestId(rs.getInt("INTEREST_ID"));
+	        	interestTO2.setInterestName(rs.getString("INTEREST_NM"));*/
+	        	interestTOList.add(interestTO2);
+	        	
+/*	        	int id = rs.getint("interest_id");
+	        	string iname = rs.getstring("interest_nm");
+	        	interesttolist.add(id, iname);*/
+	          }
+		}catch(Exception e){
+			System.out.println("getUserInterest encounter exception"+e);
+			e.printStackTrace();
+		}
+		return interestTOList;
 	}
 	
 	@Override
@@ -136,8 +170,29 @@ public class ESOUserDaoImpl extends ESODaoZohoAbstract implements ESOUserDao{
 		return rowValsMap;
 	}
 
+	@Override
+	public HashMap<String, String> saveUserInterest(int userId,int interestId) {
+		
+	    SimpleDateFormat dtFmt = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	    
+		HashMap rowValsMap = new HashMap();
+        rowValsMap.put("USER_ID", userId );
+        rowValsMap.put("INTEREST_ID", interestId);
+        rowValsMap.put("LAST_UPDT_TM",dtFmt.format(new Date()));
+
+        return rowValsMap;
+	}
 
 
+	@Override
+	public HashMap<String, String> saveUserOtherInterest(EsoUserForm form) {
+		
+		HashMap rowValsMap = new HashMap();
+        rowValsMap.put("INTEREST_NM", form.getOtherInterestName());
+        
+		return rowValsMap;
+
+	}
 	@Override
 	public HashMap saveESOUservO(EsoUserForm form) {
 		
@@ -162,7 +217,6 @@ public class ESOUserDaoImpl extends ESODaoZohoAbstract implements ESOUserDao{
 
 		return rowValsMap;
 	}
-
 
 
 

@@ -21,6 +21,7 @@
 						</div>
 						<label class="head-color">Member Information</label>
 						<div class="form-group"> 
+							<input type="text" class="form-control" name="userId"  value="${usId}"  style="display:none">
 							<input type="email" class="form-control" name="emailId" placeholder=" " value="<s:property value="emailId"/> " >
 						</div>
 						<div class="form-group">
@@ -66,8 +67,14 @@
 		<div class="col-sm-6">	
 				<h4 class="head-color">Areas of Interest</h4>
 				<h5 class="textcolor_gy lh_25"> Click one or more areas of following interest. </h5>
-				
+
+				<s:iterator value="#session.crmUserInterest">
 					<div class="form-group">
+						<input type="checkbox" name="interestId"  value="<s:property value="interestId"/>"> &nbsp;  <s:property value="interestName"/><br>
+					</div>
+					</s:iterator>
+			
+			<!-- 	<div class="form-group">
 						<input type="checkbox" name="interest" value="interest"> &nbsp;  Better overall health<br>
 					</div>
 					<div class="form-group">
@@ -105,12 +112,12 @@
 					</div>
 					<div class="form-group">
 						<input type="checkbox" name="interest" value="interest">  &nbsp; Losing Weight<br>
-					</div>
+					</div> -->
 					<div class="form-group col-sm-4 col-md-3 col-xs-12 mp_0 mg_lm20 webmg_lm20">
 						<input type="checkbox" name="interest" value="interest">  &nbsp; Others<br>
 					</div>
 					<div class="form-group col-sm-8 col-md-9 col-xs-12 mp_0">
-						<input type="text" class="form-control" placeholder=""><br>
+						<input type="text" class="form-control" name="otherInterestName" placeholder=""><br>
 					</div> 
 					<h4 class="head-color">Add Profile Photo</h4>
 					<div class="col-sm-5 col-md-3 mg_top2 mp_0 mg_lm20 webmg_lm20">			

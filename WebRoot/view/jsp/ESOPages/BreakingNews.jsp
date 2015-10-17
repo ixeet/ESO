@@ -41,23 +41,24 @@
 							</ul>
                         </div>
                         <ul class="list-group">
+                        	<s:iterator value="#session.recentlist">
                             <li class="list-group-item media v-middle">
                                 <div class="media-left">
                                     <div class="icon-block half img-circle bg-grey-300">
-                                       <img src="view/helper/images/dance.jpg" alt="person" class="img-circle" width="50" height="50" /> 
+                                       <img src="C:/ESO/breakingNews/images/<s:property value="fileName"/>" alt="person" class="img-circle" width="50" height="50" /> 
                                     </div>
                                 </div>
                                 <div class="media-body">
                                     <h4 class="text-subhead margin-none">
-                                        <a href="#" class="link-text-color">Article Posted</a>
+                                        <a href="#" class="link-text-color"><s:property value="newsTitle"/></a>
                                     </h4>
                                     <div class="text-light text-caption">
-                                        september 9 2015 by admin 
-                                        
+                                        <s:property value="lastUpdtTm"/> by <s:property value="authorName"/>                                        
                                     </div>
                                 </div>
 							</li>
-							<li class="list-group-item media v-middle">
+							</s:iterator>
+                           <!--  <li class="list-group-item media v-middle">
                                 <div class="media-left">
                                     <div class="icon-block half img-circle bg-grey-300">
                                        <img src="view/helper/images/dance.jpg" alt="person" class="img-circle" width="50" height="50" /> 
@@ -89,6 +90,22 @@
                                     </div>
                                 </div>
 							</li>
+							<li class="list-group-item media v-middle">
+                                <div class="media-left">
+                                    <div class="icon-block half img-circle bg-grey-300">
+                                       <img src="view/helper/images/dance.jpg" alt="person" class="img-circle" width="50" height="50" /> 
+                                    </div>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="text-subhead margin-none">
+                                        <a href="#" class="link-text-color">Article Posted</a>
+                                    </h4>
+                                    <div class="text-light text-caption">
+                                        september 9 2015 by admin 
+                                        
+                                    </div>
+                                </div>
+							</li> -->
 						</ul>
 		</div>
 					

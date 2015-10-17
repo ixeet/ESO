@@ -4,7 +4,8 @@ import java.io.File;
 
 
 public class EsoUserForm {
-
+	
+	int userId;
 	String userName;
 	String emailId;
 	String userPassword;
@@ -26,8 +27,17 @@ public class EsoUserForm {
     File userImage;
     String userImageContentType;
     String userImageFileName;
+    
+    int[] interestId;
+    String otherInterestName;
 
 	
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 	public String getConfirmPassword() {
 		return confirmPassword;
 	}
@@ -139,9 +149,22 @@ public class EsoUserForm {
 	public String getUserImageFileName() {
 		return userImageFileName;
 	}
+	public String getOtherInterestName() {
+		return otherInterestName;
+	}
+	public void setOtherInterestName(String otherInterestName) {
+		this.otherInterestName = otherInterestName;
+	}
 	public void setUserImageFileName(String userImageFileName) {
 		this.userImageFileName = userImageFileName;
 	}
+	public int[] getInterestId() {
+		return interestId;
+	}
+	public void setInterestId(int[] interestId) {
+		this.interestId = interestId;
+	}
+
 	
 	
 }

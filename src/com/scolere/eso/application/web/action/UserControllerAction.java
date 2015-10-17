@@ -1,6 +1,7 @@
 package com.scolere.eso.application.web.action;
 
 import java.io.File;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,7 +13,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.scolere.eso.application.web.form.EsoUserForm;
 import com.scolere.eso.domain.vo.ESOUserVO;
-import com.scolere.eso.persistance.dao.impl.ESOUserDaoImpl;
+import com.scolere.eso.domain.vo.InterestVO;
 import com.scolere.eso.service.iface.ESOUserServiceIface;
 import com.scolere.eso.service.impl.ESOUserServiceImpl;
 
@@ -30,7 +31,6 @@ public class UserControllerAction extends ActionSupport implements ModelDriven<E
 	* 
 	* 
 	*/
-	ESOUserDaoImpl eSOUserDaoImpl = null;
 	ESOUserVO eSOUserVO;
 	HttpServletRequest request = ServletActionContext.getRequest();
 	EsoUserForm form;
@@ -95,8 +95,13 @@ public class UserControllerAction extends ActionSupport implements ModelDriven<E
 
 			if ( eSOUserVOLogin != null)//check if crm user exist
 			{
+				List<InterestVO> interestVOList = eSOUserServiceIface.getUserInterest();
+				int listSize = interestVOList.size();
 				 HttpServletRequest request= ServletActionContext.getRequest();
-				 request.getSession().setAttribute("crmUser", form);
+				 request.getSession().setAttribute("crmUserInterest", interestVOList);
+				 request.getSession().setAttribute("intrstSize", listSize);
+				 request.getSession().setAttribute("usId", eSOUserVOLogin.getUserId());
+
 				 navig="success";
 			}
 			else//check if crm user doesn't exist
@@ -156,8 +161,26 @@ public class UserControllerAction extends ActionSupport implements ModelDriven<E
             
             FileUtils.copyFile(form.getUserImage(), fileToCreate);//copy file to the folder filepath ;
             
-            
+            //For User Profile Update
 			 eSOUserServiceIface.updateESOUserProfile(form);
+			 
+			 //For user Interest Update
+			 int[] interestIdNo = form.getInterestId();
+			 int userId=form.getUserId();
+			 System.out.println("User Id = "+userId);
+			 int size=form.getInterestId().length;
+			 for( int i=0;i<size;i++)
+			 {
+				 System.out.println("Interest Id = "+interestIdNo[i]);
+				 int idNo = interestIdNo[i];
+				 eSOUserServiceIface.updateESOUserInterest(userId,idNo);
+			 }
+			 
+			 //To add user other interests
+			 if(form.getOtherInterestName() != null){
+				 
+			 eSOUserServiceIface.addESOUserOtherInterest(form);
+			 }
 			 
 			 HttpServletRequest request= ServletActionContext.getRequest();
 			 request.getSession().setAttribute("userVO", form);
