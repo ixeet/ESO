@@ -38,10 +38,14 @@ public class NewsLetterSignUpAction extends ActionSupport implements ModelDriven
 			System.out.println("name--"+form.getName());
 			newsLetterHistServiceIface.addNewsletterHistory(form);
 
+			 //addActionMessage("Thanks for NEWS LETTER SIGN UP.");
 
 			HttpServletRequest request= ServletActionContext.getRequest();
-			request.getSession().setAttribute("NewsLetter", form);		
 			
+			String msg = "Thanks for NEWS LETTER SIGN UP.";
+			request.getSession().setAttribute("NewsLetter", form);		
+			request.setAttribute("NewsLetterMsg", msg);		
+
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -17,15 +17,62 @@ public class ESOUserVO {
 	private String userTypeNm;
 	private int interestId;
 	private String interestNm;
+	
 	private int addressId;
 	private String address1;
 	private String address2;
 	private String city;
+	private String zip;
+
 	private String state;
 	private int loginFlag;
-	private String country;
+	private String country = "USA";
 	private String lastUpdtTm;
+	private String homeContact;
+	private String website;
 
+	private String addedEmailId;
+	private String addedPassword;
+	private String addedUsername;
+
+	
+	
+	public String getAddedEmailId() {
+		return addedEmailId;
+	}
+	public void setAddedEmailId(String addedEmailId) {
+		this.addedEmailId = addedEmailId;
+	}
+	public String getAddedPassword() {
+		return addedPassword;
+	}
+	public void setAddedPassword(String addedPassword) {
+		this.addedPassword = addedPassword;
+	}
+	public String getAddedUsername() {
+		return addedUsername;
+	}
+	public void setAddedUsername(String addedUsername) {
+		this.addedUsername = addedUsername;
+	}
+	public String getHomeContact() {
+		return homeContact;
+	}
+	public void setHomeContact(String homeContact) {
+		this.homeContact = homeContact;
+	}
+	public String getWebsite() {
+		return website;
+	}
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+	public String getZip() {
+		return zip;
+	}
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
 	public int getUserId() {
 		return userId;
 	}

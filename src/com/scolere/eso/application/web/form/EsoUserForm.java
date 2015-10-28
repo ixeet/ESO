@@ -4,7 +4,8 @@ import java.io.File;
 
 
 public class EsoUserForm {
-
+	
+	int userId;
 	String userName;
 	String emailId;
 	String userPassword;
@@ -26,8 +27,25 @@ public class EsoUserForm {
     File userImage;
     String userImageContentType;
     String userImageFileName;
+    
+    String homeContactNo;
+    String website;
+    
+    int[] interestId;
+    String otherInterestName;
+    
+    String addedEmailId;
+    String addedPassword;
+    String addedUsername;
+    
 
 	
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 	public String getConfirmPassword() {
 		return confirmPassword;
 	}
@@ -139,9 +157,52 @@ public class EsoUserForm {
 	public String getUserImageFileName() {
 		return userImageFileName;
 	}
+	public String getOtherInterestName() {
+		return otherInterestName;
+	}
+	public void setOtherInterestName(String otherInterestName) {
+		this.otherInterestName = otherInterestName;
+	}
 	public void setUserImageFileName(String userImageFileName) {
 		this.userImageFileName = userImageFileName;
 	}
+	public int[] getInterestId() {
+		return interestId;
+	}
+	public void setInterestId(int[] interestId) {
+		this.interestId = interestId;
+	}
+	public String getHomeContactNo() {
+		return homeContactNo;
+	}
+	public void setHomeContactNo(String homeContactNo) {
+		this.homeContactNo = homeContactNo;
+	}
+	public String getWebsite() {
+		return website;
+	}
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+	public String getAddedEmailId() {
+		return addedEmailId;
+	}
+	public void setAddedEmailId(String addedEmailId) {
+		this.addedEmailId = addedEmailId;
+	}
+	public String getAddedPassword() {
+		return addedPassword;
+	}
+	public void setAddedPassword(String addedPassword) {
+		this.addedPassword = addedPassword;
+	}
+	public String getAddedUsername() {
+		return addedUsername;
+	}
+	public void setAddedUsername(String addedUsername) {
+		this.addedUsername = addedUsername;
+	}
+
 	
 	
 }

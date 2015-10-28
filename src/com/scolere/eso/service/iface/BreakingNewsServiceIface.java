@@ -1,11 +1,17 @@
 package com.scolere.eso.service.iface;
 
+import java.util.List;
+
 import com.scolere.eso.domain.vo.BreakingNewsVO;
+import com.scolere.eso.domain.vo.InterestVO;
 
 public interface BreakingNewsServiceIface {
 
+	public BreakingNewsVO getBreakingNews();
 	
-	public String getBreakingNews(BreakingNewsVO breakingNewsVO);
-	
-	public String searchBreakingNews(BreakingNewsVO breakingNewsVO);
+	public List<BreakingNewsVO> getPopularBreakingNewsList();
+
+	public List<BreakingNewsVO> getRecentBreakingNewsList();
+
+
 }

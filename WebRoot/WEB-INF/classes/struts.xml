@@ -16,9 +16,12 @@
 			<result name="success" type="tiles">/aboutUs</result>
 		</action>
 		
-		<action name="breakingNews" class="com.scolere.eso.application.web.action.CommonAction" method="breakingNewsDetails">
-			<result name="success" type="tiles">/breakingNews</result>
+		<action name="breakingNews" class="com.scolere.eso.application.web.action.BreakingNewsAction" method="execute">  
+			<result name="success" type="tiles">/breakingNews</result>  
 		</action>
+<!-- 		<action name="breakingNews" class="com.scolere.eso.application.web.action.CommonAction" method="breakingNewsDetails">
+			<result name="success" type="tiles">/breakingNews</result>
+		</action> -->
 		
 		<action name="contactUs" class="com.scolere.eso.application.web.action.CommonAction" method="contactUsDetail">
 			<result name="success" type="tiles">/contactUs</result>
@@ -38,9 +41,29 @@
 		</action>
 		
 		<action name="updateProf" class="com.scolere.eso.application.web.action.UserControllerAction" method="profileUpdate">
+			<result name="success" type="tiles">/login</result>
+		</action>
+		
+		<action name="profilePage" class="com.scolere.eso.application.web.action.UserControllerAction" method="toProfilepage">
 			<result name="success" type="tiles">/myProf</result>
 		</action>
 		
+		<action name="myprofileCheck" class="com.scolere.eso.application.web.action.UserControllerAction" method="profileInfoUpdate">
+			<result name="success" type="tiles">/myProf</result>
+		</action>
+		
+		<action name="addUser" class="com.scolere.eso.application.web.action.UserControllerAction" method="addNewUser">
+			<result name="success" type="tiles">/myProf</result>
+		</action>
+		
+		<action name="resetPwd" class="com.scolere.eso.application.web.action.UserControllerAction" method="resetPassword">
+			<result name="success" type="tiles">/myProf</result>
+		</action>
+
+		<action name="changeProfPic" class="com.scolere.eso.application.web.action.UserControllerAction" method="myProfilePhotoUpdate">
+			<result name="success" type="tiles">/myProf</result>
+		</action>
+				
 		<action name="forgetPass" class="com.scolere.eso.application.web.action.UserControllerAction" method="forgotPassword">
 			<result name="success" type="tiles">/resetPwd</result>
 		</action>
@@ -49,9 +72,11 @@
 			<result name="SUCCESS" type="tiles">/login</result>  
 		</action> 
 
-		<action name="contact-us" class="com.scolere.eso.application.web.action.ContactUsAction">  
+		<action name="Home" class="com.scolere.eso.application.web.action.ContactUsAction">  
 			<result name="success" type="tiles">/login</result>  
+			
 		</action> 
 
+ 
 	</package>
 </struts>    

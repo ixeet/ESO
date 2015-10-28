@@ -31,11 +31,14 @@ public class ContactUsAction extends ActionSupport implements ModelDriven<Contac
 			System.out.println("name--"+form.getInquiry());
 
 			contactFormHistServiceIface.saveContactFormHistory(form);
-
-
+			 addActionMessage("Thanks to contact us...");
+				
+			String msg = "Thanks to contact us...";
 			HttpServletRequest request= ServletActionContext.getRequest();
 			request.getSession().setAttribute("ContactUsHist", form);
-			
+			request.getSession().setAttribute("selectedTab", "homeTab");
+			request.setAttribute("contactusMsg", msg);
+
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -6,14 +6,19 @@ public class BreakingNewsVO {
 	private String newsTitle;
 	private String descTxt;
 	private String fileName;
+	private String videofileName;
 	private String authorName;
 	private String authorImg;
 	private String authorDetails;
 	private String isPopular;
 	private int displayOrder;
 	private String enableFl;
-	private int lastUpdtBy;
+	private String lastUpdtBy;
 	private String lastUpdtTm;
+	private String lastUpdtDay;
+	private String lastUpdtMonth;
+	private String lastUpdtYear;
+	
 	
 	public int getNewsId() {
 		return newsId;
@@ -75,10 +80,10 @@ public class BreakingNewsVO {
 	public void setEnableFl(String enableFl) {
 		this.enableFl = enableFl;
 	}
-	public int getLastUpdtBy() {
+	public String getLastUpdtBy() {
 		return lastUpdtBy;
 	}
-	public void setLastUpdtBy(int lastUpdtBy) {
+	public void setLastUpdtBy(String lastUpdtBy) {
 		this.lastUpdtBy = lastUpdtBy;
 	}
 	public String getLastUpdtTm() {
@@ -86,6 +91,30 @@ public class BreakingNewsVO {
 	}
 	public void setLastUpdtTm(String lastUpdtTm) {
 		this.lastUpdtTm = lastUpdtTm;
+	}
+	public String getLastUpdtDay() {
+		return lastUpdtDay;
+	}
+	public void setLastUpdtDay(String lastUpdtDay) {
+		this.lastUpdtDay = lastUpdtDay;
+	}
+	public String getLastUpdtMonth() {
+		return lastUpdtMonth;
+	}
+	public void setLastUpdtMonth(String lastUpdtMonth) {
+		this.lastUpdtMonth = lastUpdtMonth;
+	}
+	public String getLastUpdtYear() {
+		return lastUpdtYear;
+	}
+	public void setLastUpdtYear(String lastUpdtYear) {
+		this.lastUpdtYear = lastUpdtYear;
+	}
+	public String getVideofileName() {
+		return videofileName;
+	}
+	public void setVideofileName(String videofileName) {
+		this.videofileName = videofileName;
 	}
 
 	
