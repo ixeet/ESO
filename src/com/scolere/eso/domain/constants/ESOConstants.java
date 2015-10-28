@@ -15,4 +15,9 @@ public class ESOConstants {
 
     public static final String APP_DATASOURCE="jdbc/esodb";   
 
+    //Application common properties
+    public static final String IMAGES_BREAKING_NEWS_URL="http://192.168.0.24:8080/Resources/images/";   
+    
+    public static final String IMAGES_USER_PROFILE_URL="http://192.168.0.24:8080/Resources/useProfilePics/";   
+
 }

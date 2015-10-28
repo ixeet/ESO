@@ -1,11 +1,8 @@
 package com.scolere.eso.application.web.action;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -35,19 +32,39 @@ public class BreakingNewsAction extends ActionSupport{
 	public String execute(){
 		
 		try{
-			
+			BreakingNewsVO vo = new BreakingNewsVO();
 			List<BreakingNewsVO> popularlist = breakingNewsServiceImpl.getPopularBreakingNewsList();
 			List<BreakingNewsVO> recentlist = breakingNewsServiceImpl.getRecentBreakingNewsList();
+			
+			String temp1 = null;
+			
+			for(int i=0;i<= popularlist.size();i++){
+				if(vo.getVideofileName() != null)
+				{
+					temp1 = vo.getVideofileName();
+				}
+			}
+			String temp2 = null;
+			
+			for(int i=0;i<= popularlist.size();i++){
+				if(vo.getFileName() != null)
+				{
+					temp2 = vo.getFileName();
+				}
+			}
 
 			HttpServletRequest request= ServletActionContext.getRequest();
+			request.getSession().setAttribute("videoExist", temp1);
+			request.getSession().setAttribute("imageExist", temp2);
 			request.getSession().setAttribute("popularlist", popularlist);
 			request.getSession().setAttribute("recentlist", recentlist);
-			
+			request.getSession().setAttribute("selectedTab","breakingNewsTab");
+
 		}catch(Exception e){
 			e.printStackTrace();
 			System.out.println("In execute method Exeception...." +e);
 		}
-		return "SUCCESS";
+		return SUCCESS;
 	}
 	
 	public String getBreakingNews(){

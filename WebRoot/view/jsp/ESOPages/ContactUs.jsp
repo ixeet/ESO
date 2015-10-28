@@ -25,7 +25,7 @@
 			</div>
 		</form>
 		<h3 class="txcl_cnthead">Fill out our contact form</h3>
-		<form action="contact-us" method="post">
+		<form action="Home" method="post">
 			<div class="form-group">
       			<input type="text" class="form-control" name="name" id="name" placeholder="name">
 			</div>
@@ -35,8 +35,7 @@
 			<div class="form-group">			   
 			  <textarea class="form-control" rows="5" name="inquiry" id="comment" placeholder="inquiry"></textarea>
 			</div>
-			<button type="submit" class="btn bg_button textcolor_w" onclick="contact()">Submit</button>
-			<script>function contact(){ alert("Thanks to Contact Us. Your information is saved with us. Please feel free for any queries");}</script>
+			<button type="submit" class="btn bg_button textcolor_w" >Submit</button>
 			
  		</form>
 	</div>

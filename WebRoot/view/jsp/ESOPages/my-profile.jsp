@@ -1,9 +1,69 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
+
+<script>  
+function validateform(){  
+var regex = new RegExp("^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?");
+
+var zip=document.myform.zip.value;  
+var website=document.myform.website.value;  
+var phoneNo=document.myform.contactNo.value;  
+var phoneNo2=document.myform.homeContactNo.value;  
+    alert(( zip.length<6));  
+if (!regex.test(website)){  
+  alert("Enter the valid website");  
+  return false;  
+}else  if(isNaN(zip)||zip.indexOf(" ")!=-1){
+   alert("Enter numeric value");
+   return false; 
+}else if (zip.length>6){
+     alert("enter 6 characters");
+     return false;  
+}else  if(isNaN(phoneNo)||phoneNo.indexOf(" ")!=-1){
+   alert("Enter numeric value");
+   return false; 
+}else if (phoneNo.length>10){
+     alert("enter 6 characters");
+     return false;  
+}else  if(isNaN(phoneNo2)||phoneNo2.indexOf(" ")!=-1){
+   alert("Enter numeric value");
+   return false; 
+}else if (phoneNo2.length>10){
+     alert("enter 6 characters");
+     return false;  
+} 
+}  
+</script>  
+<script type="text/javascript">  
+function matchpass(){  
+var firstpassword=document.f1.userPassword.value;  
+var secondpassword=document.f1.confirmPassword.value;  
+  
+if(firstpassword==secondpassword){  
+return true;  
+}  
+else{  
+alert("password must be same!");  
+return false;  
+}  
+}  
+</script>
 <!------------Section begins------------>
+
+<s:if test="hasActionMessages()">
+   <div class="welcome">
+      <s:actionmessage/>
+   </div>
+</s:if>
+
+
+<s:if test="#session.userVO_2 != null">	
 <div class="container marge_bot5" id="member">
   <div class="form-group mbr_prf">
-    <input type="text" class="form-control"  placeholder="Welcome back, Chris" required>
+  
+    <input type="text" class="form-control"  placeholder="Welcome back,${userVO_2.userName} " disabled>
+   <form action="logout" >
     <button type="submit" value="submit" class="btn">Sign Out</button>
+    </form>
     <h4 class="head-color">My Account</h4>
     <h5 class="textcolor_gy lh_25 mg_rm35 fw_b">You can change your password, your profile photo, and update your contact information.<br>
       Please make sure your profile information is accurate.</h5>
@@ -12,15 +72,16 @@
   <div class="row">
     <div class="col-sm-4">
       <h4 class="head-color">Reset / Change Password </h4>
-      <form>
+      <form action="resetPwd" method="post" name="f1" onsubmit="return matchpass()">
         <div class="form-group">
-          <input type="password" class="form-control"   placeholder="Current Password" required>
+          <input type="email" class="form-control" name="emailId" placeholder=" "  value="${userVO_2.emailId}" style="display:none">
+          <input type="password" class="form-control"   placeholder="Current Password" value="${userVO_2.userPassword}" >
         </div>
         <div class="form-group">
-          <input type="password" class="form-control"   placeholder="New Password" required>
+          <input type="password" class="form-control" name="userPassword"  placeholder="New Password" required>
         </div>
         <div class="form-group">
-          <input type="password" class="form-control"   placeholder="Confirm Password" required>
+          <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password" required>
         </div>
         <div class="form-group">
           <button type="submit" class="btn bg_button textcolor_w">UPDATE PASSWORD</button>
@@ -28,98 +89,119 @@
       </form>
     </div>
     <div class="col-sm-6">
-      <form role="form">
+      <form action="changeProfPic" method="post" enctype="multipart/form-data">
         <h4 class="head-color">Add Profile Photo</h4>
         <div class="col-sm-5 col-md-3 mg_top2 mp_0 mg_lm20 webmg_lm20"> 
           <!---<div id="divphoto">
 							<img id="myImg" src="#" />
 							<input type='file' id="loadimage"/>
 						</div>---> 
-          <img src='images/create_acc.png' class="img-responsive"> </div>
+			<img src="${userVO_2.profilePic}" class="img-responsive">
+          <!-- <img src='view/helper/images/create_acc.png' class="img-responsive"> --> </div>
         <div class="form-group col-sm-7 col-md-9 mp_0 mg_lm20 webmg_lm20">
           <h5 class="textcolor_gy lh_25 mg_rm35"> Select an image file on your computer. </h5>
           <h5 class="textcolor_gy lh_25 mg_rm35"> You can upload a JPG, GIF or PNG file (File size limit is 4MG). </h5>
         </div>
         <div class="form-group col-sm-10 mp_0 mg_lm20 webmg_lm20">
-          <input type="text" class="form-control" placeholder="">
+       <!--    <input type="text" class="form-control" placeholder=""> -->
+      		 <input type="file" class="form-control" name="userImage" placeholder="Upload Photo">
+      		 <input type="email" class="form-control" name="emailId" placeholder=" "  value="${userVO_2.emailId}" style="display:none">
         </div>
         <div class="form-group col-sm-2 mp_0 mg_lm20 webmg_lm20">
-          <button type="submit" value="submit" class="btn acc textcolor_gy">Browse</button>
+         <!--  <button type="submit" value="submit" class="btn acc textcolor_gy">Browse</button> -->
         </div>
         <div class="form-group">
-          <button type="submit" value="submit" class="btn bg_button textcolor_w">UPLOAD PHOTO</button>
+                 <button type="submit" class="btn bg_button textcolor_w">UPDATE PROFILE PICTURE</button>
+          <!-- <button type="submit" value="submit" class="btn bg_button textcolor_w">UPLOAD PHOTO</button> -->
         </div>
       </form>
     </div>
     <h4 class="col-sm-12 head-color">Account Profile</h4>
+    <form action="myprofileCheck" method="post" name="myform" onsubmit="return validateform()" >
+	    <div class="col-md-4">
+	        <div class="form-group">
+	          <input type="text" class="form-control " name="fname" placeholder="First Name" value="${userVO_2.firstName}" required>
+	        </div>
+	        <div class="form-group">
+	          <input type="text" class="form-control "  name="lname" placeholder="Last Name"  value="${userVO_2.lastName}" required>
+	        </div>
+	        <div class="form-group">
+	          <input type="text" class="form-control "  name="address" placeholder="Address" value="${userVO_2.address1}" required>
+	        </div>
+	        <div class="form-group">
+	          <input type="text" class="form-control "  name="city" placeholder="City" value="${userVO_2.city}" required>
+	        </div>
+	    </div>
     <div class="col-md-4">
-      <form>
         <div class="form-group">
-          <input type="text" class="form-control "  placeholder="First Name" required>
+          <input type="text" class="form-control " name="state"  placeholder="State/Province" value="${userVO_2.state}" required>
         </div>
         <div class="form-group">
-          <input type="text" class="form-control "  placeholder="Last Name" required>
+          <input type="text" class="form-control " name="zip" placeholder="Zip/Postal" value="${userVO_2.zip}" required>
         </div>
         <div class="form-group">
-          <input type="text" class="form-control "  placeholder="Address" required>
+		  <input type="text" class="form-control " name="country" placeholder="Country" value="USA" disabled>						
         </div>
         <div class="form-group">
-          <input type="text" class="form-control "  placeholder="City" required>
+          <input type="text" class="form-control "  name="companyName" placeholder="Organization" value="${userVO_2.companyName}" required>
         </div>
-      </form>
     </div>
-    <div class="col-md-4">
-      <form>
-        <div class="form-group">
-          <input type="text" class="form-control "  placeholder="State/Province" required>
-        </div>
-        <div class="form-group">
-          <input type="number" class="form-control "  placeholder="Zip/Postal" required>
-        </div>
-        <div class="form-group">
-          <input type="text" class="form-control "  placeholder="Country" required>
-        </div>
-        <div class="form-group">
-          <input type="text" class="form-control "  placeholder="Organization" required>
-        </div>
-      </form>
-    </div>
-    <div class="col-md-4">
-      <form>
-        <div class="form-group">
-          <input type="email" class="form-control "  placeholder="Email" required>
-        </div>
-        <div class="form-group">
-          <input type="number" class="form-control "  placeholder="Work Phone" required>
-        </div>
-        <div class="form-group">
-          <input type="number" class="form-control "  placeholder="Home Phone" required>
-        </div>
-        <div class="form-group">
-          <input type="email" class="form-control "  placeholder="Website" required>
-        </div>
-      </form>
-    </div>
-    <div class="form-group col-sm-4">
+		    <div class="col-md-4">
+		        <div class="form-group">
+					<input type="text" class="form-control" name="userId"  value="${userVO_2.userId}"  style="display:none">
+					<input type="email" class="form-control" name="emailId" placeholder="<s:property value="emailId"/> "  value="${userVO_2.emailId}">
+		        </div>
+		        <div class="form-group">
+		          <input type="text" class="form-control "  name="contactNo" placeholder="Work Phone" value="${userVO_2.contactNo}" required>
+		        </div>
+		        <div class="form-group">
+		          <input type="text" class="form-control " name="homeContactNo" placeholder="Home Phone" value="${userVO_2.homeContact}" >
+		        </div>
+		        <div class="form-group">
+		          <input type="text" class="form-control " name="website" placeholder="Website" value="${userVO_2.website}" required>
+		        </div>
+		    </div>
+
+    <div class="form-group col-sm-12">
       <button type="submit" class="btn bg_button textcolor_w">SAVE CHANGES</button>
     </div>
-    
+   </form>
+   </s:if>
+   
+   
     <div class="col-sm-4">
-      <h4 class="head-color"> Add Alternative Account</h4>
-      <form>
-        <div class="form-group">
-          <input type="text" class="form-control"   placeholder=" Add User Name" required>
-        </div>
-        <div class="form-group">
-          <input type="email" class="form-control"   placeholder=" Add User email Id" required>
-        </div>
-        <div class="form-group">
-          <input type="password" class="form-control"  placeholder=" Password for the User " required>
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn bg_button textcolor_w">UPDATE PASSWORD</button>
-        </div>
-      </form>
+       <s:if test="#session.parentUser == null">    
+		      <h4 class="head-color"> Add Alternative Account</h4>
+		      <form action="addUser" method="post">
+		        <div class="form-group">
+		             <input type="text" class="form-control" name="userId" placeholder=" "  value="${userVO_2.userId}" style="display:none">
+		      		 <input type="email" class="form-control" name="emailId" placeholder=" "  value="${userVO_2.emailId}" style="display:none">
+		          <input type="text" class="form-control" name="addedUsername"  placeholder=" Add User Name"  required>
+		        </div>
+		        <div class="form-group">
+		       		 <input type="text" class="form-control" name="userId" placeholder=" "  value="${userVO_2.userId}" style="display:none">
+		      		 <input type="email" class="form-control" name="emailId" placeholder=" "  value="${userVO_2.emailId}" style="display:none">
+		          <input type="email" class="form-control" name="addedEmailId"  placeholder=" Add User email Id" required>
+		        </div>
+
+		        <div class="form-group">
+		          <button type="submit" class="btn bg_button textcolor_w">ADD ACCOUNT</button>
+		        </div>
+		      </form>
+      </s:if>
+      <s:elseif test="#session.parentUser != null">
+      		  <h4 class="head-color"> Spouse/Alternative Account</h4>
+		      <form >
+		        <div class="form-group">
+		             <input type="text" class="form-control" name="userId" placeholder=" "  value="${userVO_2.userId}" style="display:none">
+		      		 <input type="email" class="form-control" name="emailId" placeholder=" "  value="${userVO_2.emailId}" style="display:none">
+		          <input type="text" class="form-control" value="${parentUser.addedUsername}"  placeholder=" Add User Name"  disabled>
+		        </div>
+		        <div class="form-group">
+		          <input type="email" class="form-control" value="${parentUser.addedEmailId}"  placeholder=" Add User email Id" disabled>
+		        </div>
+		      </form>
+      </s:elseif>
     </div>
     <h4 class="col-sm-12 head-color ">Your Community Dialog</h4>
     <div class="col-sm-12">
@@ -244,4 +326,5 @@
   </div>
   <!---Row ends-----> 
 </div>
+
 <!------------Section begins------------> 

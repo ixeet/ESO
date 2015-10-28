@@ -26,10 +26,10 @@ public class ESOUserServiceImpl extends ESODaoAbstract implements ESOUserService
     private ReportClient rc = Config.getReportClient();
     ESOUserDao eSOUserDaoImpl = new ESOUserDaoImpl();
     
-	
+	// get the usr for login....
 	@Override
 	public ESOUserVO getUser(EsoUserForm form) {
-		ESOUserVO eSOUserVO = new ESOUserVO() ;
+		ESOUserVO eSOUserVO = null;
 		 try {
 			 
 			 ESOUserDao dao = (ESOUserDao) EsoDaoFactory.getDAO(ESOUserDao.class);
@@ -41,6 +41,7 @@ public class ESOUserServiceImpl extends ESODaoAbstract implements ESOUserService
 		return eSOUserVO;
 	}
 	
+	//get the CRM user for first time login....
 	@Override
 	public ESOUserVO getCRMUser(EsoUserForm form) {
 		ESOUserVO eSOUserVO = new ESOUserVO() ;
@@ -54,7 +55,23 @@ public class ESOUserServiceImpl extends ESODaoAbstract implements ESOUserService
 	        }
 		return eSOUserVO;
 	}
+	// get the usr for login....
+	@Override
+	public ESOUserVO getParentUser(ESOUserVO vo) {
+		ESOUserVO eSOUserVO = new ESOUserVO() ;
+		 try {
+			 
+			 ESOUserDao dao = (ESOUserDao) EsoDaoFactory.getDAO(ESOUserDao.class);
+			 eSOUserVO = dao.getParentUser(vo);
+
+	        } catch (Exception ex) {
+	            System.out.println("ESOServiceException #  = "+ex);
+	        }
+		return eSOUserVO;
+	}
 	
+	
+	//get the list of the interest from the table......
 	@Override
 	public List<InterestVO> getUserInterest() {
 		
@@ -68,9 +85,7 @@ public class ESOUserServiceImpl extends ESODaoAbstract implements ESOUserService
 			{
 				interestVO2 = new InterestVO(to.getInterestId(),to.getInterestName());
 				inList.add(interestVO2);
-				
 			}
-			
 		}catch (Exception e){
 			System.out.println("getUserInterest = "+e);
 		}
@@ -78,6 +93,7 @@ public class ESOUserServiceImpl extends ESODaoAbstract implements ESOUserService
 
 	}
 	
+	//update the user profile for fist time login
 	@Override
 	public boolean updateESOUserProfile(EsoUserForm form) throws IOException, ServerException, ParseException{
 		
@@ -89,6 +105,7 @@ public class ESOUserServiceImpl extends ESODaoAbstract implements ESOUserService
 		return true;
 	}
 
+	// add user interst in usr txn table
 	@Override
 	public boolean updateESOUserInterest(int userId,int interestId) throws IOException,ServerException, ParseException {
 		
@@ -101,6 +118,7 @@ public class ESOUserServiceImpl extends ESODaoAbstract implements ESOUserService
 		return true;
 	}
 
+	// add if the user have other interst too
 	@Override
 	public boolean addESOUserOtherInterest(EsoUserForm form) throws IOException, ServerException, ParseException {
 		
@@ -113,6 +131,7 @@ public class ESOUserServiceImpl extends ESODaoAbstract implements ESOUserService
 		return true;
 	}
 	
+	// update the login flag as soon as the user login.. count the login times of the user
 	@Override
 	public boolean updateUserLoginFlag(ESOUserVO vo) throws IOException,
 			ServerException, ParseException {
@@ -125,6 +144,7 @@ public class ESOUserServiceImpl extends ESODaoAbstract implements ESOUserService
         return true;
 	}
 	
+	//update the profile pic....in my profile button click
 	@Override
 	public boolean updateESOUserProfilePic(EsoUserForm form)
 			throws IOException, ServerException, ParseException {
@@ -136,17 +156,19 @@ public class ESOUserServiceImpl extends ESODaoAbstract implements ESOUserService
         //System.out.println(" The response is " + result);	
 		return true;
 	}
-	
-    public String getCriteria(ESOUserVO vo)
-    {
-        return "(\"Email\" = '"+vo.getEmailId()+"')";
-    }
-    
-    public String getCriteria(EsoUserForm form)
-    {
-        return "(\"Email\" = '"+form.getEmailId()+"')";
-    }
 
+	//update the user profile for user login
+	@Override
+	public boolean updateProfileInfo(EsoUserForm form) throws IOException, ServerException, ParseException{
+		
+		String uri = rc.getURI(Config.LOGINEMAILID,Config.DATABASENAME,"ESO_USERS");
+        rc.updateData(uri,eSOUserDaoImpl.profileInfoUpdate(form),getCriteria(form),null);
+        
+        System.out.println("Successfully added the row to " + uri);
+        //System.out.println(" The response is " + result);	
+		return true;
+	}
+	//rest the pwd / change pwd...
 	@Override
 	public boolean restPassword(EsoUserForm form) throws IOException,
 			ServerException, ParseException {
@@ -159,16 +181,27 @@ public class ESOUserServiceImpl extends ESODaoAbstract implements ESOUserService
 		return true;
 	}
 
+	// add the user account...
 	@Override
 	public boolean addAlternativeUser(EsoUserForm form) throws IOException,
 			ServerException, ParseException {
 		String uri = rc.getURI(Config.LOGINEMAILID,Config.DATABASENAME,"ESO_USERS");
         Map result = rc.addRow(uri,eSOUserDaoImpl.saveESOUservO(form),null);
         
-       // System.out.println("Data matching the criteria " + getCriteria(EsoUserForm form) + " successfully updated.");
         System.out.println("Successfully added the row to " + uri);
         //System.out.println(" The response is " + result);	
 		return true;
 	}
+	
+	
+    public String getCriteria(ESOUserVO vo)
+    {
+        return "(\"Email\" = '"+vo.getEmailId()+"')";
+    }
+    
+    public String getCriteria(EsoUserForm form)
+    {
+        return "(\"Email\" = '"+form.getEmailId()+"')";
+    }
 
 }

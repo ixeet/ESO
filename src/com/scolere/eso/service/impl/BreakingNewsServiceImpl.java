@@ -3,12 +3,10 @@ package com.scolere.eso.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.scolere.eso.domain.constants.ESOConstants;
 import com.scolere.eso.domain.to.BreakingNewsTO;
-import com.scolere.eso.domain.to.InterestTO;
 import com.scolere.eso.domain.vo.BreakingNewsVO;
-import com.scolere.eso.domain.vo.InterestVO;
 import com.scolere.eso.persistance.dao.iface.BreakingNewsDao;
-import com.scolere.eso.persistance.dao.iface.ESOUserDao;
 import com.scolere.eso.persistance.dao.impl.BreakingNewsDaoImpl;
 import com.scolere.eso.persistance.factory.ESODaoAbstract;
 import com.scolere.eso.persistance.factory.EsoDaoFactory;
@@ -50,15 +48,19 @@ public class BreakingNewsServiceImpl extends ESODaoAbstract implements BreakingN
 				newsVO.setNewsId(to.getNewsId());
 				newsVO.setNewsTitle(to.getNewsTitle());
 				newsVO.setDescTxt(to.getDescTxt());
-				newsVO.setFileName(to.getFileName());
+				newsVO.setFileName(ESOConstants.IMAGES_BREAKING_NEWS_URL+to.getFileName());
+				newsVO.setVideofileName(to.getVideofileName());
 				newsVO.setAuthorName(to.getAuthorName());
-				newsVO.setAuthorImg(to.getAuthorImg());
+				newsVO.setAuthorImg(ESOConstants.IMAGES_BREAKING_NEWS_URL+to.getAuthorImg());
 				newsVO.setAuthorDetails(to.getAuthorDetails());
 				newsVO.setIsPopular(to.getIsPopular());
 				newsVO.setDisplayOrder(to.getDisplayOrder());
 				newsVO.setEnableFl(to.getEnableFl());
 				newsVO.setLastUpdtBy(to.getLastUpdtBy());
-				newsVO.setLastUpdtTm(to.getLastUpdtTm());
+				//newsVO.setLastUpdtTm(to.getLastUpdtTm());
+				newsVO.setLastUpdtDay(to.getLastUpdtDay());
+				newsVO.setLastUpdtMonth(to.getLastUpdtMonth());
+				newsVO.setLastUpdtYear(to.getLastUpdtYear());
 				
 				//add in the list
 				bList.add(newsVO);
@@ -88,15 +90,19 @@ public class BreakingNewsServiceImpl extends ESODaoAbstract implements BreakingN
 				newsVO.setNewsId(to.getNewsId());
 				newsVO.setNewsTitle(to.getNewsTitle());
 				newsVO.setDescTxt(to.getDescTxt());
-				newsVO.setFileName(to.getFileName());
+				newsVO.setFileName(ESOConstants.IMAGES_BREAKING_NEWS_URL+to.getFileName());
+				newsVO.setVideofileName(to.getVideofileName());
 				newsVO.setAuthorName(to.getAuthorName());
-				newsVO.setAuthorImg(to.getAuthorImg());
+				newsVO.setAuthorImg(ESOConstants.IMAGES_BREAKING_NEWS_URL+to.getAuthorImg());
 				newsVO.setAuthorDetails(to.getAuthorDetails());
 				newsVO.setIsPopular(to.getIsPopular());
 				newsVO.setDisplayOrder(to.getDisplayOrder());
 				newsVO.setEnableFl(to.getEnableFl());
 				newsVO.setLastUpdtBy(to.getLastUpdtBy());
-				newsVO.setLastUpdtTm(to.getLastUpdtTm());
+				//newsVO.setLastUpdtTm(to.getLastUpdtTm());
+				newsVO.setLastUpdtDay(to.getLastUpdtDay());
+				newsVO.setLastUpdtMonth(to.getLastUpdtMonth());
+				newsVO.setLastUpdtYear(to.getLastUpdtYear());
 				
 				//add in the list
 				bList.add(newsVO);

@@ -14,6 +14,8 @@ public interface ESOUserDao {
 	public ESOUserVO getCRMUser(EsoUserForm form);
 	
 	public List<InterestTO> getUserInterest();
+	
+	public ESOUserVO getParentUser(ESOUserVO vo);
 
 	public HashMap<String, String> profileUpdate(EsoUserForm form);
 	
@@ -32,5 +34,7 @@ public interface ESOUserDao {
 	public ESOUserVO getUserDetail(String userId);
 
 	HashMap<String, String> loginFlagUpdate(ESOUserVO vo);
+
+	HashMap<String, String> profileInfoUpdate(EsoUserForm form);
 
 }

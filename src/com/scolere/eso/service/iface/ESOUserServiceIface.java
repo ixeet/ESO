@@ -17,6 +17,8 @@ public interface ESOUserServiceIface {
 	public ESOUserVO getCRMUser(EsoUserForm form);
 	
 	public List<InterestVO> getUserInterest();
+	
+	public ESOUserVO getParentUser(ESOUserVO vo);
 	 	
 	public boolean updateESOUserProfile(EsoUserForm form) throws IOException,
 			ServerException, ParseException;
@@ -37,5 +39,8 @@ public interface ESOUserServiceIface {
 	ServerException, ParseException;
 	
 	boolean updateUserLoginFlag(ESOUserVO vo) throws IOException,
+			ServerException, ParseException;
+
+	boolean updateProfileInfo(EsoUserForm form) throws IOException,
 			ServerException, ParseException;
 }

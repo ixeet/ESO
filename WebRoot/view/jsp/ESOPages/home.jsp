@@ -1,5 +1,34 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
+<script>
+$(document).ready(function(){
+var temp ='${userMsg}';
+if(temp != "" )
+alert(temp);
+}
+);
+</script>
+<script>
+$(document).ready(function(){
+var temp ='${crmUserMsg}';
+if(temp != "" )
+{alert(temp);}
+});
+</script>
+<script>
+$(document).ready(function(){
+var temp ='${NewsLetterMsg}';
+if(temp != "" )
+alert(temp);
+});
+</script>
+<script>
+$(document).ready(function(){
+var temp ='${contactusMsg}';
+if(temp != "" )
+{alert(temp);}
+});
+</script>
 <section class="container common_sec marge_bot5 mp_0">
 	<div class="container mp_0">
 		<div class="col-md-6 col-sm-6"><h3 class="head-color">HOW IT WORKS</h3>
@@ -19,6 +48,9 @@
 									</div>
 								<div class="tab-content"><!---------tab content starts------>
 									<div id="sectionA" class="tab-pane fade in active"><!---------content of section A starts------>																
+<%-- 										 ${userMsg}
+					 				 	 ${crmUserMsg}			
+										  --%>
 										<form method="POST" action="userLogin" >
 											<div class="form-group pos-relat">
 												  <label for="email" class="head-color">Member Login - </label> <span style="color:#256ea6">Sign in to begin.</span>
@@ -33,56 +65,28 @@
 												<label class="textcolor_bl"><input type="checkbox"> Remember me </label>
 											</div>
 											<div class="form-group pos-relat col-sm-6 pad_0">
-												  <button type="submit" value="Newuser" class="btn bg_button textcolor_w">LOGIN</button>    
+												  <button type="submit" value="Newuser"  class="btn bg_button textcolor_w">LOGIN</button>    
 											</div>
 											<div class="form-group pos-relat col-sm-6 psw">
-												  <a href="javaScript:;" data-toggle="modal" data-target="#mypsw">Forgot password ?</a>
+												  <a href="forgot-pwd.jsp"  >Forgot password ?</a>
+												 
 											</div>
 										</form>
 									</div>
 				<!---------content of section A ends------>
-						<!-- Modal for forgot password -->
-							  <div class="modal" id="mypsw" role="dialog">
-								<div class="modal-dialog">
-								
-								  <!-- Modal content-->
-								  <div class="modal-content">
-									<div class="modal-header pop_btn">
-									  <button type="button" class="close" data-dismiss="modal">&times;</button>
-									  <h4 class="modal-title head-color">Enter a Valid Email-Id</h4>
-									</div>
-									<div class="modal-body">
-									
-									<form method="POST" action="forgetPass" >						
-										<div class="form-group  col-sm-12">
-											 <input type="email" class="form-control" name="emailId" placeholder="Enter your email address" required>
-										</div>
-										<div class="form-group">
-											  <button type="submit" value="submit" class="btn bg_button pop_btn textcolor_w">SUBMIT</button> 
-										</div>
-									</form>												
-									</div>												
-								  </div>											  
-								</div>											
-							  </div>
-							 
-				  <!----modal for forgot passward ends----->
-								
+
 				<!-------content of section B starts--------->
 				<s:if test="#session.crmUser == null">	
-				 <div id="sectionB" class="tab-pane fade">						
+				 <div id="sectionB" class="tab-pane fade">
 						<form method="POST" action="crmLogin" >
 							<div class="form-group pos-relat">
 								  <label for="email" class="head-color">CRM Login - </label> <span style="color:#256ea6">Sign in to begin.</span>
 								  <i class="glyphicon glyphicon-user left-inner-addon"></i>
-								  <input type="email" class="form-control member-input" name="emailId"  id="email" placeholder="username/ email address">
+								  <input type="email" class="form-control member-input" name="emailId"  id="email" placeholder="username/ email address" required="required">
 							</div>
+
 							<div class="form-group pos-relat">
-								   <i class="glyphicon glyphicon-lock"></i>
-								  <input type="password" class="form-control member-input" name="userPassword" id="pwd" placeholder="password">
-							</div>
-							<div class="form-group pos-relat">
-								  <button type="submit" value="Newuser" class="btn bg_button textcolor_w" >Continue</button> 									   
+								  <button type="submit" value="Newuser"  class="btn bg_button textcolor_w" >Continue</button> 									   
 							</div>
 						</form>															
 					</div><!---------tab content ends------>		
@@ -92,31 +96,28 @@
 							<s:elseif test="#session.userVO != null">
 							 
 								<div class="col-md-6 col-sm-6 mg_top20">
-									<span style="color:#256ea6">Welcome  <s:property value="emailId"/>, You are Logged in.</span>
+									<span style="color:#256ea6">Welcome  <s:property value="fname"/> <s:property value="lname"/>, You are Logged in.</span>
+									<div class="row"><br>
 									<form action="logout" >
-										<div class="form-group" >									
+										<div class="form-group col-sm-6" >									
 											  <button type="submit" value="logout" class="btn bg_button textcolor_w">LOGOUT</button>    
 										</div>	
 									</form>
-									<form action="myprofileCheck" >
-										<div class="form-group" >									
+									<form action="profilePage" >
+										<div class="form-group col-sm-6" >									
 											  <button type="submit" value="myProfile" class="btn bg_button textcolor_w">MY PROFILE</button>    
 										</div>	
-									</form>		
+									</form>	
+									</div>	
 									<form  method="POST" action="">
 										<div class="input-group col-md-12 mg_top20">
 											<input type="text" class="form-control search-query" placeholder="Search Here">
 												<span class=" glyphicon glyphicon-search search-icon lft head-color"></span>
 										</div>
-									</form >
-								
-								</div>
-							
-							</s:elseif>
-			
-		</div>
-		
-		
+									</form >								
+								</div>							
+							</s:elseif>			
+		</div>		
 	</div>
 </section>
 <!------------Section ends------------>
@@ -206,8 +207,7 @@
 			<div class="form-group marge-rhtm3">		   
 			  <input type="email" class="form-control" name="email"  id="email" placeholder="Your Email">
 			</div>				 
-			<button type="submit" class="btn btn-success" onclick="newsletterSignUp()">Sign Up</button>
-			<script>function newsletterSignUp(){ alert("Thanks For NewsLetter Sign-up.Your information is saved with us");}</script>
+			<button type="submit" class="btn btn-success">Sign Up</button>
 	  </form>
   </div>
   <div class="col-md-12 col-sm-12 col-xs-12 textcolor_w">

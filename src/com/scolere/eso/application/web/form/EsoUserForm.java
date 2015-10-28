@@ -28,8 +28,16 @@ public class EsoUserForm {
     String userImageContentType;
     String userImageFileName;
     
+    String homeContactNo;
+    String website;
+    
     int[] interestId;
     String otherInterestName;
+    
+    String addedEmailId;
+    String addedPassword;
+    String addedUsername;
+    
 
 	
 	public int getUserId() {
@@ -163,6 +171,36 @@ public class EsoUserForm {
 	}
 	public void setInterestId(int[] interestId) {
 		this.interestId = interestId;
+	}
+	public String getHomeContactNo() {
+		return homeContactNo;
+	}
+	public void setHomeContactNo(String homeContactNo) {
+		this.homeContactNo = homeContactNo;
+	}
+	public String getWebsite() {
+		return website;
+	}
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+	public String getAddedEmailId() {
+		return addedEmailId;
+	}
+	public void setAddedEmailId(String addedEmailId) {
+		this.addedEmailId = addedEmailId;
+	}
+	public String getAddedPassword() {
+		return addedPassword;
+	}
+	public void setAddedPassword(String addedPassword) {
+		this.addedPassword = addedPassword;
+	}
+	public String getAddedUsername() {
+		return addedUsername;
+	}
+	public void setAddedUsername(String addedUsername) {
+		this.addedUsername = addedUsername;
 	}
 
 	
